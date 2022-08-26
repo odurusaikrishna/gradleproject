@@ -1,9 +1,8 @@
-FROM openjdk:8-jre-slim
+FROM adoptopenjdk/openjdk11:alpine-jre
 
-EXPOSE 8080
+ARG JAR_FILE=/build/libs/pokerstats-0.0.1-SNAPSHOT.jar
 
-RUN mkdir /app
+WORKDIR /opt/app
+COPY ${JAR_FILE} app.jar
 
-COPY build/libs/*.jar /app/spring-boot-application.jar
-
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/spring-boot-application.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
