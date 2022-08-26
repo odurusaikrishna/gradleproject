@@ -1,8 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
-
-ARG JAR_FILE=/build/libs/pokerstats-0.0.1-SNAPSHOT.jar
-
-WORKDIR /opt/app
-COPY ${JAR_FILE} app.jar
-
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM openjdk:11
+COPY build/libs/SpringBootRestApp-0.0.1-SNAPSHOT.jar /
+WORKDIR /
+CMD ["java", "-jar", "SpringBootRestApp-0.0.1-SNAPSHOT.jar"]
